@@ -1,7 +1,7 @@
 {
   "name": "brief3-d-autocar-en-ligne",
   "version": "1.0.0",
-  "description": "",
+  "description": "Réservation de billet d'autocar en ligne\r ## env\r ```bash\r NODE_ENV=development\r PORT=3000\r MONGO_URI=mongodb+srv://Brief3:<password>@brief3cluster.grvcroz.mongodb.net/?retryWrites=true&w=majority",
   "main": "index.js",
   "scripts": {
     "start": "nodemon app.js"

@@ -19,10 +19,7 @@ mongoose.connect(
 );
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
-//routes
-// app.get('/api/goats', (req, res) => {    
-//     res.status(200).json({message:'welcome to /api/goats'});
-// }); 
+
 
 app.use('/api', require('./routes/Routes'));
 app.use(errorHandler)

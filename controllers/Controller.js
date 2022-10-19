@@ -5,7 +5,6 @@ const Goal=require('../models/model');
 //@access public
 const fonctionGet=asyncHandler(async(req,res)=>{
     const goals=await Goal.find();
-    // res.status(200).json({message:'get /api'});
     res.status(200).json(goals);
 })
 
@@ -18,7 +17,7 @@ const fonctionPost=asyncHandler(async(req,res)=>{
       text:req.body.text
     });
     res.status(200).json(goal);
-})
+})  
 
 const fonctionUpdate=asyncHandler(async(req,res)=>{
     const goal=await Goal.findById(req.params.id)
@@ -26,7 +25,7 @@ const fonctionUpdate=asyncHandler(async(req,res)=>{
        res.status(400)
        throw new Error('Goal not found')
     }
-    const updatedGoal=await Goal.findByIdAndUpdate(req.params.id, res.body, {
+    const updatedGoal=await Goal.findByIdAndUpdate(req.params.id, req.body, {
        new: true,
     })
     res.status(200).json(updatedGoal);
