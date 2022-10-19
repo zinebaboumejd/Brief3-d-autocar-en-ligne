@@ -2,8 +2,8 @@
 const express = require('express');
 const colors=require('colors');
  const { default: mongoose } = require('mongoose');
-const { errorHandler } = require('./middleware/errormiddleware')
-const connectDB =require('./config/db');
+const { errorHandler } = require('./backend/middleware/errormiddleware')
+const connectDB =require('./backend/config/db');
 const doten=require('dotenv').config();
 const port=process.env.PORT || 3000;
 connectDB();
@@ -21,7 +21,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 
 
-app.use('/api', require('./routes/Routes'));
+app.use('/api', require('./backend/routes/Routes'));
 app.use(errorHandler)
 //listenig port
 app.listen(port, () => console.log(`server is running ${port}`));
