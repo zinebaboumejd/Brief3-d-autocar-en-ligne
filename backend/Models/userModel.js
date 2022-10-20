@@ -18,10 +18,15 @@ const userSchema=new Schema({
         type:String,
         required:[true,'entrez votre password']
     },
+    isAdmin:{
+        type:Boolean,
+        default:false
+    }
 },
 {timestamps:true}
 );
+//model est une classe
+//schema est un objet
 module.exports=mongoose.model('user',userSchema);
-
-   
+ 
 
