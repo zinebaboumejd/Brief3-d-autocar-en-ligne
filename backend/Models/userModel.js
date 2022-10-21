@@ -29,4 +29,5 @@ const userSchema=new Schema({
 //schema est un objet
 module.exports=mongoose.model('user',userSchema);
  
+  
 

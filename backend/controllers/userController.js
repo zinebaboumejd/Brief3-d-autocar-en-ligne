@@ -39,12 +39,6 @@ const registerUser=asyncHandler(async(req,res)=>{
         res.status(400)
         throw new Error('Invalid user data')
     }
-    // //create token
-    // const token=jwt.sign({id:user._id},process.env.JWT_SECRET,{
-    //     expiresIn:process.env.JWT_EXPIRE
-    // });
-  
-// }
 
 })
 const loginUser=asyncHandler(async(req,res)=>{
@@ -57,6 +51,7 @@ const loginUser=asyncHandler(async(req,res)=>{
         nom:user.nom,
         prenom:user.prenom,
         email:user.email,
+        isAdmin:user.isAdmin,
         // password:user.password,
         token:generateToken(user._id)
     })
@@ -77,15 +72,30 @@ const getMe=asyncHandler(async(req,res)=>{
     })
     // res.json({message:'user display'});
 })
+
 // generate token
 const generateToken=(id)=>{
     return jwt.sign({id},process.env.JWT_SECRET,{
         expiresIn:'30d'
     })
+    
 }
+
+
+// deconection user connecter et supprimer le token
+// const logoutUser=asyncHandler(async(req,res)=>{
+//     res.clearCookie('token');
+//     res.json({
+//         message:'User is logout'
+//     })
+//     // res.redirect('/login');
+// })
+
 module.exports={
     registerUser ,
     loginUser,
-    getMe
+    getMe,
+   
+    // logoutUser
 
 }

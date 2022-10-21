@@ -6,6 +6,7 @@ const {
     ,fonctionPost
     ,fonctionUpdate
     ,fonctionDelete
+  
 }=require('../controllers/Controller');
 // const port=process.env.PORT || 6000;
 const {protect}=require('../middleware/authMiddlleware');

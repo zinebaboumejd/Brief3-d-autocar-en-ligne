@@ -1,35 +1,16 @@
 const mongoose=require('mongoose');
 const Schema=mongoose.Schema;
 const autocarSchema=new Schema({
-   type:{
+    matricule:{
         type:String,
-        required:[true,'entrez le type de voyage']
+        required:[true,'entrez matricule']
     },
-    prix:{
-        type:Number,
-        required:[true,'entrez le prix']
-    },
-    dateDepart:{
-        type:Date,
-        required:[true,'entrez la date de depart']
-    },
-    dateRetour:{
-        type:Date,
-        required:[true,'entrez la date de retour']
-    },
-    origin:{
-        type:String,
-        required:[true,'entrez la ville de depart']
-    },
-    destination:{
-        type:String,
-        required:[true,'entrez la ville d arrivee']
-    },
-    
     nombreplace:{
         type:Number,
-        required:[true,'entrez le nombre de place']
-    },
+        required:[true,'entrez nombre de place']
+    
+    }
+
 },
     {timestamps:true}
  );

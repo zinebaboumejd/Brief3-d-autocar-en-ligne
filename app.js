@@ -18,11 +18,14 @@ mongoose.connect(
 
 );
 app.use(express.json());
+app.use(errorHandler);
 app.use(express.urlencoded({extended:false}));
 
 
 //  app.use('/api', require('./backend/routes/routes'));
 app.use('/api/users', require('./backend/routes/userRoute'));
+app.use('/api/admin', require('./backend/routes/adminRouter'));
+
 
 
 
