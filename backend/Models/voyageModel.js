@@ -21,8 +21,12 @@ const voyageSchema=mongoose.Schema({
         type:Number,
         required:[true,'entrez prix']
     },
-    
-    
+    // ajouter forign key idcar
+    idcar:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'autocar'
+    }
+  
     },{timestamps:true}
 );
 module.exports=mongoose.model('voyage',voyageSchema);

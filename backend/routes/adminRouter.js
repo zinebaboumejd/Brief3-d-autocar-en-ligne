@@ -5,18 +5,33 @@ const router = express.Router();
 const {
     AjouterCar,
     AjouterVoyage,
-    AfficherVoyage
+    AfficherVoyage,
+    AfficherCar,
+    AfficherCarById,
+    AfficherVoyageById,
+    ModifierCar,
+    ModifierVoyage,
+    SupprimerCar,
+    SupprimerVoyage
+
     // logoutUser
 }=require('../controllers/adminController');
 const {protect,isAdmin}=require('../middleware/authMiddlleware');
 
 
 
+router.post('/AjouterCar',protect,isAdmin,AjouterCar);
+router.get('/AfficherCar',protect,isAdmin,AfficherCar);
+router.get('/AfficherCar/:id',protect,isAdmin,AfficherCarById);
+router.put('/ModifierCar/:id',protect,isAdmin,ModifierCar);
+router.delete('/SupprimerCar/:id',protect,isAdmin,SupprimerCar);
 
-
-router.post('/AjouterCar',AjouterCar);
 router.post('/AjouterVoyage',protect,isAdmin,AjouterVoyage);
-router.get('/AfficherVoyage',AfficherVoyage);
+router.get('/AfficherVoyage',protect,isAdmin,AfficherVoyage);
+router.get('/AfficherVoyage/:id',protect,isAdmin,AfficherVoyageById);
+router.put('/ModifierVoyage/:id',protect,isAdmin,ModifierVoyage);
+router.delete('/SupprimerVoyage/:id',protect,isAdmin,SupprimerVoyage);
+
 
 
 

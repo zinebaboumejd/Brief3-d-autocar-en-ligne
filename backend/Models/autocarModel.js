@@ -8,7 +8,6 @@ const autocarSchema=new Schema({
     nombreplace:{
         type:Number,
         required:[true,'entrez nombre de place']
-    
     }
 
 },
