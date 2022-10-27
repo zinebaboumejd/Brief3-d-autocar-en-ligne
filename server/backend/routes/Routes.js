@@ -8,7 +8,9 @@ const {
     ,fonctionDelete
   
 }=require('../controllers/Controller');
-// const port=process.env.PORT || 6000;
+
+const port=process.env.PORT || 5000;
+
 const {protect}=require('../middleware/authMiddlleware');
 
 //routes

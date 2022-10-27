@@ -21,7 +21,13 @@ app.use(express.json());
 app.use(errorHandler);
 app.use(express.urlencoded({extended:false}));
 
-
+//Ajouter headers
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+    next();
+});
 //  app.use('/api', require('./backend/routes/routes'));
 app.use('/api/users', require('./backend/routes/userRoute'));
 app.use('/api/admin', require('./backend/routes/adminRouter'));
