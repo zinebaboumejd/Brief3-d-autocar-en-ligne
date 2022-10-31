@@ -7,18 +7,30 @@ const voyageSchema=mongoose.Schema({
     },
     destination:{
         type:String,
+        // default:Date.now,
         required:[true,'entrez destination']
     },
     datedepart:{
         type:String,
+        // default:Date.now,
         required:[true,'entrez date depart']
     },
     datedarrivee:{
         type:String,
         required:[true,'remplire votre date arrivee']
     },
+
+    datetimedepart:{
+        type:String,
+        required:[true,'remplire votre date time depart']
+    },
+    datetimedarevee:{
+        type:String,
+        required:[true,'remplire votre date time arrivee']
+    },
     prix:{
         type:Number,
+
         required:[true,'entrez prix']
     },
     // ajouter forign key idcar

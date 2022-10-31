@@ -76,12 +76,14 @@ const SupprimerCar=asyncHandler(async(req,res)=>{
 //fonction ajouer voyage
 const AjouterVoyage=asyncHandler(async(req,res)=>{
 
-    const{origine,destination,datedepart,datedarrivee,prix}=req.body;
+    const{origine,destination,datedepart,datedarrivee,datetimedepart,datetimedarevee,prix}=req.body;
     const voyage=await Voyage.create({
         origine,
         destination,
         datedepart,
-        datedarrivee,      
+        datedarrivee,  
+        datetimedepart,
+        datetimedarevee,    
         prix
     });
     if(voyage){
