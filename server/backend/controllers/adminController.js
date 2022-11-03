@@ -3,7 +3,12 @@ const asyncHandler = require('express-async-handler');
 const errorHandler=require('../middleware/errormiddleware');
 const Car = require('../models/autocarModel');
 const Voyage = require('../models/voyageModel');
-
+const User = require('../models/userModel');
+const AfficherUsers=asyncHandler(async(req,res)=>{
+    const users=await User.find({});
+    res.json(users);
+}
+)
 // fonction ajouter un autocar
 const AjouterCar=asyncHandler(async(req,res)=>{
     const {matricule,nombreplace}=req.body;
@@ -147,4 +152,7 @@ const SupprimerVoyage=asyncHandler(async(req,res)=>{
         throw new Error('voyage not found');
     }
 })
-module.exports={AjouterCar,AjouterVoyage,AfficherVoyage,AfficherCar,ModifierVoyage,SupprimerVoyage,SupprimerCar,AfficherCarById,AfficherVoyageById,ModifierCar}
+module.exports={AjouterCar,AjouterVoyage,AfficherVoyage,
+    AfficherCar,ModifierVoyage,SupprimerVoyage,
+    SupprimerCar,AfficherCarById,AfficherVoyageById,ModifierCar
+    ,AfficherUsers}

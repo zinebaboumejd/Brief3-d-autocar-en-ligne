@@ -5,7 +5,7 @@ const colors=require('colors');
 const { errorHandler } = require('./backend/middleware/errormiddleware');
 const connectDB =require('./backend/config/db');
 const doten=require('dotenv').config();
-const port=process.env.PORT || 5000;
+const port=process.env.PORT || 9000;
 connectDB();
 const app = express();
 app.use(express.json());

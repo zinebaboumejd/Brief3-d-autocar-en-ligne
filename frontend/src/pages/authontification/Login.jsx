@@ -1,19 +1,19 @@
 import React ,{useEffect, useState} from 'react'
-import {  useNavigate } from 'react-router'
+import {  useNavigate } from 'react-router-dom'
+import { Toaster} from 'react-hot-toast';
+
 // import {useNavigate} from 'react-router-dom';
 function Login() {
+
   const [email,setEmail]=useState('');
   const [password,setPassword]=useState('');
- const navigate=useNavigate();
-  useEffect(()=>{
-    if(localStorage.getItem("user-info")){
-     navigate("/")
-    }
-  },[])
-  async function login(){
-   console.warn(email,password)
+  const navigate=useNavigate();
+
+
+  const login = async () => {
     let item={email,password}
-    let result=await fetch("http://localhost:5000/api/users/login",{
+    
+    let result=await fetch("http://localhost:9000/api/users/login",{
       method:'POST',
       headers:{
         "Content-Type":"application/json",
@@ -22,11 +22,38 @@ function Login() {
       body:JSON.stringify(item)
   });
   result=await result.json();
-  localStorage.setItem("user-info",JSON.stringify(result))
-  navigate("/")
+  // console log the token only 
+  console.log(result.token)
+
+  // tester si le user est admin ou pas
+  if(result.isAdmin === true){
+    localStorage.setItem("admin_id",JSON.stringify(result._id))
+    localStorage.setItem("token",JSON.stringify(result.token))
+    localStorage.setItem("isAdmin",JSON.stringify(result.isAdmin))
+    navigate("/admin/dashbordAdmin")
+  }else if(result.isAdmin === false){
+    localStorage.setItem("user_id",JSON.stringify(result._id))
+    localStorage.setItem("token",JSON.stringify(result.token))
+    localStorage.setItem("isAdmin",JSON.stringify(result.isAdmin))
+    navigate("/users/dashbordUser")
   }
+  // console.log(result);
+  // localStorage.setItem("user-info",JSON.stringify(result))
+  // navigate("/")
+  // toast.success("login success")
+  }
+
+  useEffect(() => {
+    if(localStorage.getItem("user_id")){ 
+      navigate("/users/dashbordUser") 
+    }else if(localStorage.getItem("admin_id")){
+      navigate("/admin/dashbordAdmin")
+    }
+  }, [])
+
   return (
         <>
+        <Toaster/>
         <section className='heading mx-auto w-full max-w-[550px]'>
           <h1 className="mt-3 text-[3.5rem] font-bold leading-[4rem] tracking-tight text-black">
              Login
@@ -35,7 +62,7 @@ function Login() {
         </section>
     
         <section className='form mx-auto w-full max-w-[550px] '>
-          <form >
+          <form method='Post'>
             <div className='form-group'>
               <input
                 type='email'
@@ -66,6 +93,7 @@ function Login() {
                 
                 Submit
               </button>
+            
             </div>
           </form>
         </section>

@@ -15,7 +15,7 @@ async function register(){
 console.warn(nom,prenom,email,password)
 let item={nom,prenom,email,password}
 console.warn(item)
-let result=await fetch("http://localhost:5000/api/users/register",{
+let result=await fetch("http://localhost:9000/api/users/register",{
 method:'POST',
 headers:{
 "Content-Type":"application/json",
@@ -26,7 +26,7 @@ body:JSON.stringify(item)
 result=await result.json();
 console.warn("result",result)
 localStorage.setItem("user-info",JSON.stringify(result))
-Navigate("/")
+Navigate("/login")
 }
 
   return (

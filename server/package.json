@@ -4,7 +4,7 @@
   "description": "Réservation de billet d'autocar en ligne\r ## env\r ```bash\r NODE_ENV=development\r PORT=3000\r MONGO_URI=mongodb+srv://Brief3:<password>@brief3cluster.grvcroz.mongodb.net/?retryWrites=true&w=majority",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "nodemon --max-http-header-size 16000 app.js",
     "client": "npm start --prefix ../frontend",
     "dev": "concurrently \"npm run start\" \"npm run client\""
   },

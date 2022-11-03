@@ -12,14 +12,15 @@ const {
     ModifierCar,
     ModifierVoyage,
     SupprimerCar,
-    SupprimerVoyage
+    SupprimerVoyage,
+    AfficherUsers
 
     // logoutUser
 }=require('../controllers/adminController');
 const {protect,isAdmin}=require('../middleware/authMiddlleware');
 
 
-
+router.get('/AfficherUsers',protect,isAdmin,AfficherUsers);
 router.post('/AjouterCar',protect,isAdmin,AjouterCar);
 router.get('/AfficherCar',protect,isAdmin,AfficherCar);
 router.get('/AfficherCar/:id',protect,isAdmin,AfficherCarById);
