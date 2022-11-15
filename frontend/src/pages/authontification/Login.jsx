@@ -10,7 +10,8 @@ function Login() {
   const navigate=useNavigate();
 
 
-  const login = async () => {
+  const login = async (event) => {
+    event.preventDefault();
     let item={email,password}
     
     let result=await fetch("http://localhost:9000/api/users/login",{
@@ -35,20 +36,30 @@ function Login() {
     localStorage.setItem("user_id",JSON.stringify(result._id))
     localStorage.setItem("token",JSON.stringify(result.token))
     localStorage.setItem("isAdmin",JSON.stringify(result.isAdmin))
+   if(localStorage.getItem("user_id")){    
     navigate("/users/dashbordUser")
+     if ( localStorage.getItem("idvoyage") && localStorage.getItem("idvoyage") !== null){
+      navigate("/voyage")
   }
-  // console.log(result);
-  // localStorage.setItem("user-info",JSON.stringify(result))
-  // navigate("/")
-  // toast.success("login success")
+}
+  else if(localStorage.getItem("admin_id")){
+    navigate("/admin/dashbordAdmin")
+  }
+  }
+  
   }
 
   useEffect(() => {
-    if(localStorage.getItem("user_id")){ 
-      navigate("/users/dashbordUser") 
-    }else if(localStorage.getItem("admin_id")){
-      navigate("/admin/dashbordAdmin")
-    }
+  //   if(localStorage.getItem("user_id")){    
+  //     navigate("/users/dashbordUser")
+  //      if ( localStorage.getItem("idvoyage") && localStorage.getItem("idvoyage") !== null){
+  //       navigate("/voyage")
+  //   }
+  // }
+  //   else if(localStorage.getItem("admin_id")){
+  //     navigate("/admin/dashbordAdmin")
+  //   }
+
   }, [])
 
   return (

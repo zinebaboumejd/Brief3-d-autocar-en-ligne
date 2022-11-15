@@ -14,14 +14,15 @@ const {
     SupprimerCar,
     SupprimerVoyage,
     AfficherUsers
+    
 
     // logoutUser
 }=require('../controllers/adminController');
 const {protect,isAdmin}=require('../middleware/authMiddlleware');
-
+const upload=require('../middleware/upload');
 
 router.get('/AfficherUsers',protect,isAdmin,AfficherUsers);
-router.post('/AjouterCar',protect,isAdmin,AjouterCar);
+router.post('/AjouterCar',protect,isAdmin,upload.single('image') ,AjouterCar);
 router.get('/AfficherCar',protect,isAdmin,AfficherCar);
 router.get('/AfficherCar/:id',protect,isAdmin,AfficherCarById);
 router.put('/ModifierCar/:id',protect,isAdmin,ModifierCar);

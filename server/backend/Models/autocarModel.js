@@ -8,8 +8,18 @@ const autocarSchema=new Schema({
     nombreplace:{
         type:Number,
         required:[true,'entrez nombre de place']
-    }
+    },
+    nomcar:{
+        type:String,
+        required:[true,'entrez nom de car']
+    },
 
+    image:{
+        Data:Buffer,
+        contentType:String
+    }
+        
+ 
 },
     {timestamps:true}
  );

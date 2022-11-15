@@ -1,18 +1,59 @@
 
 const asyncHandler = require('express-async-handler');
 const errorHandler=require('../middleware/errormiddleware');
+
 const Car = require('../models/autocarModel');
 const Voyage = require('../models/voyageModel');
 const User = require('../models/userModel');
+const multer  = require('multer');
+const path = require('path');
+const { response } = require('express');
+const { error } = require('console');
 const AfficherUsers=asyncHandler(async(req,res)=>{
     const users=await User.find({});
     res.json(users);
 }
 )
+// const storage=multer.diskStorage({
+//   destination:(req,file,cb)=>{
+//     cb(null,'uploads/')
+//   },
+//     filename:(req,file,cb)=>{
+//         cb(null,Date.now()+path.extname(file.originalname))
+//         }
+// })
+// const upload=multer({storage:storage})
+
 // fonction ajouter un autocar
-const AjouterCar=asyncHandler(async(req,res)=>{
-    const {matricule,nombreplace}=req.body;
+const AjouterCar=asyncHandler(async(req,res,next)=>{
+//    let car=new Car({
+//       matricule:req.body.matricule, 
+//      nombreplace:req.body.nombreplace,
+//      nomcar:req.body.nomcar,      
+//     })  
+//     if(req.file){
+//         car.image=req.file.path;
+//     }
+//     car.save()
+//     .then(response=>{
+//         res.json({
+//             message:"car added successfully",
+//             car:response
+//         })
+//     })
+//     .catch(error=>{
+//         res.json({
+//             message:"an error occured"
+//         })
+//     })
+
+   
+
+   
+    
+    const {matricule,nombreplace,nomcar}=req.body;
     const carexists=await Car.findOne({matricule});
+
    //check if car exists
     if(carexists){
         res.status(400)
@@ -20,19 +61,27 @@ const AjouterCar=asyncHandler(async(req,res)=>{
     }
     const car=await Car.create({
         matricule,
-        nombreplace
+        nombreplace,
+        nomcar,
+        // image:req.file.path
     });
+      if(req.file){
+        car.image=req.file.path;
+    }
     if(car){
         res.status(201).json({
             _id:car.id,
             matricule:car.matricule,
+            nombreplace:car.nombreplace,
+            nomcar:car.nomcar,
+            img:car.image
+            
            
         })
     }else{
         res.status(400)
         throw new Error('Invalid car data')
     }
-
 
 })
 
@@ -81,7 +130,7 @@ const SupprimerCar=asyncHandler(async(req,res)=>{
 //fonction ajouer voyage
 const AjouterVoyage=asyncHandler(async(req,res)=>{
 
-    const{origine,destination,datedepart,datedarrivee,datetimedepart,datetimedarevee,prix}=req.body;
+    const{origine,destination,datedepart,datedarrivee,datetimedepart,datetimedarevee,prix,idcar}=req.body;
     const voyage=await Voyage.create({
         origine,
         destination,
@@ -89,7 +138,8 @@ const AjouterVoyage=asyncHandler(async(req,res)=>{
         datedarrivee,  
         datetimedepart,
         datetimedarevee,    
-        prix
+        prix,
+        idcar
     });
     if(voyage){
         res.status(201).json(voyage)
@@ -100,7 +150,7 @@ const AjouterVoyage=asyncHandler(async(req,res)=>{
 })
 // Afficher les voyages
 const AfficherVoyage=asyncHandler(async(req,res)=>{
-    const voyage=await Voyage.find({});
+    const voyage=await Voyage.find();
     res.json(voyage);
 })
 // afficher voyage par id

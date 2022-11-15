@@ -1,5 +1,5 @@
 import React ,{ useState, useEffect }  from "react";
-import Navbar from "../../components/Navbar";
+
 
 import { ToastContainer , toast } from 'react-toastify';
 import  {CiEdit,CiTrash}  from "react-icons/ci";
@@ -54,19 +54,9 @@ import  {CiEdit,CiTrash}  from "react-icons/ci";
     
     <section>
     <ToastContainer />
-    <div class="bg-gray-100 sm:grid grid-cols-5 grid-rows-2 px-4 py-6 min-h-full lg:min-h-screen space-y-6 sm:space-y-0 sm:gap-4">
+    {/* <div class="bg-gray-800 sm:grid grid-cols-5 grid-rows-2 px-4 py-6 min-h-full lg:min-h-screen space-y-6 sm:space-y-0 sm:gap-4"> */}
 
-   
-    <div class="h-96 col-span-1 ">
-      <div class="bg-white py-3 px-4 rounded-lg flex justify-around items-center ">
-   <input type="text" placeholder="seach" class=" bg-gray-100 rounded-md  outline-none pl-2 ring-indigo-700 w-full mr-2 p-2" />
-  <span><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor ">
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-</svg></span>
-      </div>
-    <Navbar/>
-    </div>
-    <div class="flex flex-col  h-96 col-span-4 bg-gradient-to-tr rounded-md items-center">  {/*from-indigo-800 to-indigo-500 */}
+    <div class="flex flex-col w-90  col-span-4 bg-gradient-to-tr rounded-md items-center">  {/*from-indigo-800 to-indigo-500 */}
     <div class="overflow-x-auto shadow-md sm:rounded-lg ">
         <div class="inline-block min-w-full align-middle">
      
@@ -150,7 +140,7 @@ import  {CiEdit,CiTrash}  from "react-icons/ci";
         </div>
     </div>
 </div>
-    </div>
+    {/* </div> */}
 
   </section>
 

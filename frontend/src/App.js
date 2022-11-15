@@ -8,24 +8,32 @@ import DashbordUser from './pages/users/DashbordUser';
 import Ajoutervoyage from './pages/admin/Ajoutervoyage';
 import ModifierVoyage from './pages/admin/ModifierVoyage';
 import Afficherusers from './pages/admin/Afficherusers';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Header from './components/Header'
-
+import Navbar from './components/Navbar';
+import Footer from './components/Footer'
+import Voyage from './pages/users/Voyage'
+import Reservation from '../src/pages/users/Rservation';
 function App() {
   return (
  <div>
-    
+     {/* <div className='container'> */}
   <ToastContainer />
-  
-
 
     <Router>   
-      <div className='container'>
+     
         {/* tester is admin  */}
-      
-       <Header />
        
+      {
+        localStorage.getItem('isAdmin') === 'true' ? (   
+             <Navbar />     
+        ) : (
+          <Header />
+        )
+      }
+     
+      
      <Routes>
         <Route path='/' exact element={<Home/>} />
         <Route path='/login' element={<Login/>}/>
@@ -35,12 +43,17 @@ function App() {
         <Route path='/admin/ajoutervoyage' element={<Ajoutervoyage/>}/>
         <Route path='/admin/modifiervoyage/:id' element={<ModifierVoyage/>}/>
         <Route path='/admin/afficherusers' element={<Afficherusers/>}/>
+        <Route path='/voyage' element={<Voyage/>}/>
+       <Route path='/reservation' element={<Reservation/>}/>
      </Routes>
-      </div>
-    </Router>
-     
     
-    </div>
+    </Router>
+ 
+          <Footer></Footer>       
+     
+   
+     </div>
+    // </div>
   );
 }
 

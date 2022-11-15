@@ -11,8 +11,9 @@ const {
     AfficherReservationById,
     ModifierReservation,
     SupprimerReservation,
-    RechercheVoyage
-   
+    RechercheVoyage,
+    AfficherVoyage,
+    AfficherVoyageById
     
 
     // logoutUser
@@ -29,7 +30,9 @@ router.get('/AfficherReservation',protect,AfficherReservation);
 router.get('/AfficherReservation/:id',protect,AfficherReservationById);
 router.put('/ModifierReservation/:id',protect,ModifierReservation);
 router.delete('/SupprimerReservation/:id',protect,SupprimerReservation);
-router.get('/RechercheVoyage/:destination/:origine',protect,RechercheVoyage);
+router.post('/RechercheVoyage',RechercheVoyage);
+router.get('/AfficherVoyage',AfficherVoyage);
+router.get('/AfficherVoyage/:id',AfficherVoyageById);
 // route deconnexion
 // router.get('/logout',logoutUser);
 

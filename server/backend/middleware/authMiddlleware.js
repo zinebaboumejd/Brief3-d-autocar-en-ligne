@@ -27,20 +27,6 @@ if(!token){
 })
 
 
-// const isAdmin=(req,res,next)=>{
-//     User.findOne({isAdmin:req.user.isAdmin}).then((user)=>{
-//        //tester si l'utilisateur est admin
-//         if(user.isAdmin){
-//             console.log('admin');
-//             next();
-//         }
-//         else{
-//             res.status(401);
-//             throw new Error('Not authorized as an admin');
-//         }
-//     })    
-// }
-
 const isAdmin = (req, res, next) => {
     try{
         const {isAdmin} = req.user;

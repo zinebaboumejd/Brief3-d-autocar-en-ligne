@@ -6,10 +6,12 @@ const { errorHandler } = require('./backend/middleware/errormiddleware');
 const connectDB =require('./backend/config/db');
 const doten=require('dotenv').config();
 const port=process.env.PORT || 9000;
+const multer=require('multer')
 connectDB();
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
+app.use('/uploads',express.static('uploads'));
 // connection to DB
 mongoose.connect(
     process.env.DB_CONNECTION,
@@ -17,9 +19,7 @@ mongoose.connect(
     () => console.log('connected to DB')
 
 );
-app.use(express.json());
-app.use(errorHandler);
-app.use(express.urlencoded({extended:false}));
+
 
 //Ajouter headers
 app.use((req, res, next) => {
@@ -32,7 +32,7 @@ app.use((req, res, next) => {
 app.use('/api/users', require('./backend/routes/userRoute'));
 app.use('/api/admin', require('./backend/routes/adminRouter'));
 
-
+app.use(errorHandler);
 
 
 

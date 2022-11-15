@@ -26,34 +26,8 @@ function Ajoutervoyage() {
     });
    
   }
+// ajouter voyage
 
-//   const addvoyage  =async(e)=>{
-// const item={
-//    "origine":e.target.origine.value,
-//     "destination":e.target.destination.value,
-//     "datedepart":e.target.datedepart.value,
-//     "datearrive":e.target.datearrive.value,
-//     "datetimedepart":e.target.datetimedepart.value,
-//     "datetimearrive":e.target.datetimearrive.value,
-//     "prix":e.target.prix.value,
-//     "carid":e.target.carid.value,
-// }
-// let result=await fetch("http://localhost:9000/api/admin/AjouterVoyage",{
-//         method:'POST',
-//         headers:{
-//           "Content-Type":"application/json",
-//           "Accept":"application/json",
-//             "Authorization":`Bearer ${token}`
-//         },
-//         body:JSON.stringify(item)
-//     });
-//     result=await result.json();
-//     console.log(result)
-//   Navigate("/admin/dashbordAdmin")
-
-// }
-    
-  
 
 
     useEffect(()=>{
